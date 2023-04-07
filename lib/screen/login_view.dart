@@ -20,10 +20,13 @@ class _LoginViewState extends State<LoginView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 30.0, left: 30),
+                padding: const EdgeInsets.only(top: 30.0, left: 10),
                 child: Row(
                   children: [
-                    // Icon(Icons.arrow_back_rounded),
+                    TextButton(
+                        onPressed: () =>
+                            Navigator.pushNamed(context, "/splashView"),
+                        child: Icon(Icons.arrow_back_rounded,color: sPrimary,)),
                     Text(
                       "Giriş Yap",
                       style: sEncodeSansSemiBold.copyWith(
@@ -35,7 +38,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 30, top: 30),
+                padding: const EdgeInsets.only(left: 30, top: 60),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -64,7 +67,7 @@ class _LoginViewState extends State<LoginView> {
                   ],
                 ),
               ),
-              const SizedBox(height: 100),
+              const SizedBox(height: 40),
               const _Mail(),
               const SizedBox(height: 20),
               const _Password(),
@@ -75,13 +78,14 @@ class _LoginViewState extends State<LoginView> {
                 padding: const EdgeInsets.only(left: 30),
                 child: Text(
                   "Henüz bir hesabınız yok mu?",
-                  style: sEncodeSansRegular.copyWith(color: sBlack, fontSize: 16),
+                  style:
+                      sEncodeSansRegular.copyWith(color: sBlack, fontSize: 16),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 21),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(context, "/singUpView"),
                   child: Text(
                     "Burada bir hesap oluşturun",
                     style: sEncodeSansSemiBold.copyWith(
@@ -90,7 +94,6 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               const SizedBox(height: 50),
-      
               Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: TextButton(
@@ -137,7 +140,6 @@ class _ForgotPass extends StatelessWidget {
           child: Text(
             "Şifremi Unuttum ?",
             style: sEncodeSansRegular.copyWith(color: sBlack, fontSize: 14),
-            
           ),
         ),
       ],
@@ -162,7 +164,7 @@ class _Password extends StatelessWidget {
           color: sWhite,
           borderRadius: BorderRadius.circular(5),
         ),
-        child:  TextFormField(
+        child: TextFormField(
           autofocus: false,
           style: TextStyle(color: sBlack),
           obscureText: true,
@@ -174,7 +176,6 @@ class _Password extends StatelessWidget {
             border: OutlineInputBorder(gapPadding: 5),
             hintText: 'Şifre',
             hintStyle: TextStyle(color: Colors.grey),
-            
           ),
         ),
       ),
@@ -199,7 +200,7 @@ class _Mail extends StatelessWidget {
           color: sWhite,
           borderRadius: BorderRadius.circular(5),
         ),
-        child:  TextFormField(
+        child: TextFormField(
           autofocus: false,
           style: const TextStyle(color: sBlack),
           decoration: const InputDecoration(

@@ -325,7 +325,7 @@ class _SplashViewState extends State<SplashView> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.pushNamed(context, "/singUpView"),
                     child: Container(
                       width: 161,
                       height: 56,
@@ -345,7 +345,7 @@ class _SplashViewState extends State<SplashView> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () => Navigator.pushNamed(context, "/loginView"),
                     child: Container(
                       width: 161,
                       height: 56,

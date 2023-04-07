@@ -11,12 +11,6 @@ const Color sBackground =Color(0xffF1F1F1);
 const double sBorderRadius = 100.0;
 const double sPaddinHorizontal = 22.0;
  
-// final sInputBorder = OutlineInputBorder(
-//   borderRadius: BorderRadius.circular(sBorderRadius),
-//   borderSide: const BorderSide(
-//     color: sLightGrey,
-//   ),
-// );
 
 final sEncodeSansBold = GoogleFonts.encodeSans(
   fontWeight: FontWeight.w700
@@ -33,3 +27,4 @@ final sEncodeSansMedium = GoogleFonts.encodeSans(
 final sEncodeSansRegular = GoogleFonts.encodeSans(
   fontWeight: FontWeight.w400
 );
+

@@ -5,6 +5,8 @@ const Color sWhite = Color(0xffffffff);
 const Color sSecondary = Color(0xffFFFFFF);
 
 const Color sBlack = Color(0xff111111);
+const Color sNavigatoinClick = Colors.black;
+const Color sGrey = Color.fromARGB(255, 112, 112, 112);
 const Color sPrimary = Color(0xffFFB347);
 const Color sBackground =Color(0xffF1F1F1);
 

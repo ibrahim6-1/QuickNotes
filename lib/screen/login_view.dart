@@ -1,6 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../style/app_style.dart';
+
+@immutable
+late String email, password;
+final formkey = GlobalKey<FormState>();
+final firebaseAuth = FirebaseAuth.instance;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -16,108 +22,128 @@ class _LoginViewState extends State<LoginView> {
       backgroundColor: sBackground,
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0, left: 10),
-                child: Row(
-                  children: [
-                    TextButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, "/splashView"),
-                        child: Icon(Icons.arrow_back_rounded,color: sPrimary,)),
-                    Text(
-                      "Giriş Yap",
-                      style: sEncodeSansSemiBold.copyWith(
-                        color: sBlack,
-                        fontSize: 18,
+          child: Form(
+            key: formkey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 30.0, left: 10),
+                  child: Row(
+                    children: [
+                      TextButton(
+                          onPressed: () =>
+                              Navigator.pushNamed(context, "/splashView"),
+                          child: Icon(
+                            Icons.arrow_back_rounded,
+                            color: sPrimary,
+                          )),
+                      Text(
+                        "Giriş Yap",
+                        style: sEncodeSansSemiBold.copyWith(
+                          color: sBlack,
+                          fontSize: 18,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 30, top: 60),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Hoşgeldiniz !",
-                      style: sEncodeSansBold.copyWith(
-                        color: sBlack,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 30, top: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Lütfen bilgilerinizle giriş yapın",
-                      style: sEncodeSansRegular.copyWith(
-                        color: sBlack,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 40),
-              const _Mail(),
-              const SizedBox(height: 20),
-              const _Password(),
-              const SizedBox(height: 20),
-              _ForgotPass(),
-              const SizedBox(height: 50),
-              Padding(
-                padding: const EdgeInsets.only(left: 30),
-                child: Text(
-                  "Henüz bir hesabınız yok mu?",
-                  style:
-                      sEncodeSansRegular.copyWith(color: sBlack, fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 21),
-                child: TextButton(
-                  onPressed: () => Navigator.pushNamed(context, "/singUpView"),
-                  child: Text(
-                    "Burada bir hesap oluşturun",
-                    style: sEncodeSansSemiBold.copyWith(
-                        color: sPrimary, fontSize: 14),
+                    ],
                   ),
                 ),
-              ),
-              const SizedBox(height: 50),
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 343,
-                    height: 52,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(sBorderRadius),
-                      color: sPrimary,
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Giriş Yap",
-                        style: sEncodeSansRegular.copyWith(
-                          color: sWhite,
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, top: 60),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Hoşgeldiniz !",
+                        style: sEncodeSansBold.copyWith(
+                          color: sBlack,
                           fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, top: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Lütfen bilgilerinizle giriş yapın",
+                        style: sEncodeSansRegular.copyWith(
+                          color: sBlack,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 40),
+                const _Mail(),
+                const SizedBox(height: 20),
+                const _Password(),
+                const SizedBox(height: 20),
+                const _ForgotPass(),
+                const SizedBox(height: 50),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30),
+                  child: Text(
+                    "Henüz bir hesabınız yok mu?",
+                    style: sEncodeSansRegular.copyWith(
+                        color: sBlack, fontSize: 16),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 21),
+                  child: TextButton(
+                    onPressed: () =>
+                        Navigator.pushNamed(context, "/singUpView"),
+                    child: Text(
+                      "Burada bir hesap oluşturun",
+                      style: sEncodeSansSemiBold.copyWith(
+                          color: sPrimary, fontSize: 14),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 50),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: TextButton(
+                    onPressed: () async {
+                      if (formkey.currentState!.validate()) {
+                        formkey.currentState!.save();
+                        try {
+                          final userResult =
+                              await firebaseAuth.signInWithEmailAndPassword(
+                                  email: email, password: password);
+                          Navigator.pushReplacementNamed(context,"/mainScreen");
+                          print(userResult.user!.email);
+                        } catch (e) {
+                          print(e.toString());
+                        }
+                      } else {}
+                    },
+                    child: Container(
+                      width: 343,
+                      height: 52,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(sBorderRadius),
+                        color: sPrimary,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Giriş Yap",
+                          style: sEncodeSansRegular.copyWith(
+                            color: sWhite,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -165,8 +191,16 @@ class _Password extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
         child: TextFormField(
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Bilgilerinizi doldurun";
+            } else {}
+          },
+          onSaved: (value) {
+            password = value!;
+          },
           autofocus: false,
-          style: TextStyle(color: sBlack),
+          style: const TextStyle(color: sBlack),
           obscureText: true,
           decoration: const InputDecoration(
             prefixIcon: Icon(
@@ -201,6 +235,14 @@ class _Mail extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
         child: TextFormField(
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "Bilgilerinizi doldurun";
+            } else {}
+          },
+          onSaved: (value) {
+            email = value!;
+          },
           autofocus: false,
           style: const TextStyle(color: sBlack),
           decoration: const InputDecoration(

@@ -135,7 +135,7 @@ class _SplashViewState extends State<SplashView> {
                   ),
                   child: Center(
                     child: Text(
-                      "Next",
+                      "İleri",
                       style: sEncodeSansRegular.copyWith(
                           color: sSecondary, fontSize: 18),
                     ),
@@ -232,9 +232,9 @@ class _SplashViewState extends State<SplashView> {
                     borderRadius: BorderRadius.circular(sBorderRadius),
                     color: sPrimary,
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
-                      "Next",
+                      "İleri",
                       style: TextStyle(
                         color: sSecondary,
                         fontSize: 18,

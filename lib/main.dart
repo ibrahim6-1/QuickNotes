@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'My Code Notes',
+      title: 'Ouick Notes',
       routes: {
         "/splashView":(context) => const SplashView(),
         "/loginView":(context) => const LoginView(),
@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
 
       },
       home: SplashView(),
-      //https://www.figma.com/community/file/1093303680777021546
     );
   }
 }

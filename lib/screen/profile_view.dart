@@ -49,12 +49,13 @@ class _ProfileViewState extends State<ProfileView> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'İsim Soyisim',
+                        'Oyun ve Uygulama Akademisi',
                         style: sEncodeSansMedium.copyWith(
                             color: Colors.black, fontSize: 20),
                       ),
+                      SizedBox(height: 5),
                       Text(
-                        'testmail@gmail.com',
+                        'oua@gmail.com',
                         style: sEncodeSansRegular.copyWith(
                             color: Colors.black, fontSize: 15),
                       ),

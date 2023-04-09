@@ -34,14 +34,24 @@ class _ImageTextViewState extends State<ImageTextView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Center(
-              child: Container(
-                  padding: EdgeInsets.only(top: 40),
-                  height: 250,
-                  width: 350,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                  child: Image.asset("assets/images/textimg.png")),
+            Container(
+              padding: EdgeInsets.only(top: 40),
+              height: 250,
+              width: 350,
+              decoration: BoxDecoration(
+                  border: Border.all(width: 2),
+                  borderRadius: BorderRadius.circular(30)),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Center(
+                  child: Text(
+                      "'+' Düğmesini kullanarak bir resim yükleyin",
+                      style:sEncodeSansSemiBold.copyWith(
+                        color: sBlack,
+                        fontSize: 14
+                      ) ,),
+                ),
+              ),
             ),
             SizedBox(height: 20),
             Container(
@@ -51,13 +61,24 @@ class _ImageTextViewState extends State<ImageTextView> {
               decoration: BoxDecoration(
                   border: Border.all(width: 2),
                   borderRadius: BorderRadius.circular(30)),
-              child: Center(child: Text("data")),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Center(
+                  child: Text(
+                      "Taramayı gerçekleştirmek için “Görüntüyü Tara” düğmesine tıklayın",
+                      style: sEncodeSansRegular.copyWith(
+                        color: sBlack,
+                        fontSize: 14
+                      ),
+                      ),
+                ),
+              ),
             ),
             SizedBox(height: 20),
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 40 ),
+                  padding: const EdgeInsets.only(left: 40),
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(

@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_notes/screen/about_view.dart';
+import 'package:quick_notes/screen/login_view.dart';
 import 'package:quick_notes/screen/note_view.dart';
+import 'package:quick_notes/screen/splash_view.dart';
 import 'package:quick_notes/style/app_style.dart';
 
 class ProfileView extends StatefulWidget {
@@ -11,11 +14,13 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  // final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: sSecondary,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           "Profil",
           style: sEncodeSansSemiBold.copyWith(color: sBlack, fontSize: 36),
@@ -153,14 +158,13 @@ class _ProfileViewState extends State<ProfileView> {
             ElevatedButton.icon(
               icon: Icon(Icons.logout_outlined),
               onPressed: () {
-                // Çıkış yapmak için yapılacak işlemler buraya yazılabilir
-                // Future<void> signOutWithGoogle() async {
-                //   await FirebaseAuth.instance.signOut();
-                //   await GoogleSignIn().signOut();
-                // }
+                FirebaseAuth.instance.signOut().then((value) { 
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SplashView()));
+                });
               },
               style: ElevatedButton.styleFrom(
-                primary: const Color(0xffFFB347), // Butonun arka plan rengi
+                backgroundColor:
+                    const Color(0xffFFB347), // Butonun arka plan rengi
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 140),
                 shape: RoundedRectangleBorder(
@@ -173,7 +177,6 @@ class _ProfileViewState extends State<ProfileView> {
                 style: sEncodeSansSemiBold.copyWith(
                     color: Colors.white, fontSize: 20),
               ),
-              
             ),
           ],
         ),

@@ -13,14 +13,6 @@ class _HelpViewState extends State<HelpView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: sSecondary,
-      // appBar: AppBar(
-      //   title: Text(
-      //     "Yardım",
-      //     style: sEncodeSansSemiBold.copyWith(color: sBlack, fontSize: 36),
-      //   ),
-      //   backgroundColor: sPrimary,
-      //   elevation: 0,
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -86,7 +78,7 @@ class _HelpViewState extends State<HelpView> {
                         fontSize: 24.0,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () => Navigator.pushNamed(context, "/mainScreen"),
                   ),
                 ],
               ),
@@ -115,7 +107,7 @@ class _HelpViewState extends State<HelpView> {
                         fontSize: 24.0,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () => Navigator.pushNamed(context, "/mainScreen"),
                   ),
                 ],
               ),

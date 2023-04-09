@@ -10,6 +10,18 @@ const Color sGrey = Color.fromARGB(255, 112, 112, 112);
 const Color sPrimary = Color(0xffFFB347);
 const Color sBackground =Color(0xffF1F1F1);
 
+List<Color> cardColor =[
+  Colors.white,
+  Colors.red.shade100,
+  Colors.orange.shade100,
+  Colors.green.shade100,
+  Colors.blue.shade100,
+  Colors.yellow.shade100,
+  Colors.pink.shade100,
+  Colors.blueGrey.shade100,
+
+];
+
 const double sBorderRadius = 100.0;
 const double sPaddinHorizontal = 22.0;
  

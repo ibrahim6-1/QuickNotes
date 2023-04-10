@@ -9,4 +9,6 @@ Ek bilgiler :
 
 ## Video
 
-https://github.com/ibrahim6-1/QuickNotes/issues/1#issue-1660059273
+https://user-images.githubusercontent.com/118055744/230804157-65afd8b6-6a8c-435f-a679-572f7c6c4568.mp4
+
+
